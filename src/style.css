@@ -125,6 +125,46 @@ a {
   color: #4b5563;
 }
 
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.resource-card {
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #f9fafb;
+}
+
+.resource-card h3 {
+  margin: 10px 0;
+  font-size: 1.35rem;
+}
+
+.resource-type {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #ede9fe;
+  color: #6d28d9;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.card-link {
+  display: inline-block;
+  margin-top: 14px;
+  color: #6d28d9;
+  font-weight: 700;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 700px) {
   .site-header h1 {
     font-size: 2rem;

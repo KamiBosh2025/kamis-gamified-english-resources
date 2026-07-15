@@ -26,7 +26,22 @@ document.querySelector('#app').innerHTML = `
 
     <section id="resources" class="resources-section container">
       <h2>Featured Resources</h2>
-      <p>Our first Kahoot and Wordwall activities will appear here.</p>
+
+<div class="resource-grid">
+  <article class="resource-card">
+    <span class="resource-type">Kahoot</span>
+    <h3>English Grammar Challenge</h3>
+    <p>Practice grammar through an engaging interactive quiz.</p>
+    <a href="#" class="card-link">Open Resource</a>
+  </article>
+
+  <article class="resource-card">
+    <span class="resource-type">Wordwall</span>
+    <h3>Vocabulary Practice</h3>
+    <p>Review useful English vocabulary through a playful activity.</p>
+    <a href="#" class="card-link">Open Resource</a>
+  </article>
+</div>
     </section>
 
     <section id="about" class="about-section container">
