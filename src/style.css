@@ -198,6 +198,21 @@ border-radius: 999px;
   margin-top: 22px;
   justify-content: center;
 }
+.site-footer {
+  margin-top: 40px;
+  padding: 32px 20px;
+  background: linear-gradient(135deg, #6d28d9, #2563eb);
+  color: white;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 6px 0;
+}
+
+.site-footer strong {
+  font-size: 1.1rem;
+}
 @media (max-width: 700px) {
   .site-header h1 {
     font-size: 2rem;

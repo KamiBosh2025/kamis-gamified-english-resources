@@ -85,4 +85,12 @@ document.querySelector('#app').innerHTML = `
       </p>
     </section>
   </main>
+  <footer class="site-footer">
+  <div class="container">
+    <p><strong>Created by Kameliya Boshlova</strong></p>
+    <p>English Teacher & Creator of Gamified Learning Resources</p>
+    <p>Kahoot • Wordwall • Interactive English Practice</p>
+    <p>© 2026 Kameliya Boshlova. All rights reserved.</p>
+  </div>
+</footer>
 `
