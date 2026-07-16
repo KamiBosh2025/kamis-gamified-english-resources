@@ -43,7 +43,32 @@ document.querySelector('#app').innerHTML = `
   </article>
 </div>
     </section>
+<section id="libraries" class="libraries-section container">
+  <h2>Explore My Complete Resource Libraries</h2>
+  <p>
+    Discover all of my public English learning activities on Kahoot and Wordwall.
+  </p>
 
+  <div class="library-links">
+    <a
+      href="https://create.kahoot.it/profiles/97ccb93a-4801-4e36-a50d-33f363193ac7"
+      class="button primary-button"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Explore My Full Kahoot Library
+    </a>
+
+    <a
+      href="https://wordwall.net/teacher/27220547"
+      class="button secondary-button"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Explore My Full Wordwall Library
+    </a>
+  </div>
+</section>
     <section id="about" class="about-section container">
       <h2>About the Project</h2>
       <p>
