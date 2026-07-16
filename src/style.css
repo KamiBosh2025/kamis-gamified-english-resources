@@ -33,12 +33,25 @@ a {
 
 .site-header h1 {
   font-size: 2.5rem;
+  font-family: 'Caveat Brush', cursive;
   margin-bottom: 10px;
 }
-
 .site-header p {
-  font-size: 1.1rem;
-  opacity: 0.95;
+  font-family: 'Caveat Brush', cursive;
+}
+
+.site-header nav {
+  font-family: Arial, sans-serif;
+}
+.site-header nav a {
+  margin: 0 10px;
+}
+.site-header p {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  opacity: 1;
+  margin-bottom: 18px;
 }
 
 .hero {
@@ -141,7 +154,12 @@ border-radius: 999px;
   color: #4b5563;
   text-align: justify;
 }
-
+.about-section p {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #4c1d95;
+}
 .resource-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -213,6 +231,11 @@ border-radius: 999px;
 .site-footer strong {
   font-size: 1.1rem;
 }
+.site-header a {
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
 @media (max-width: 700px) {
   .site-header h1 {
     font-size: 2rem;
@@ -225,6 +248,7 @@ border-radius: 999px;
 
   .hero h2 {
     font-size: 1.8rem;
+    
   }
 
   .resources-section,
