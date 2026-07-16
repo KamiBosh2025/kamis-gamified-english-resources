@@ -42,19 +42,34 @@ a {
 }
 
 .hero {
+  
   min-height: 430px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: space-between;
+  gap: 40px;
+  text-align: left;
   padding: 70px 20px;
 }
 
 .hero-content {
-  max-width: 760px;
+  max-width: 560px;
+  text-align: center;
+}
+.hero-image img {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
 }
 
 .eyebrow {
+  display: inline-block;
+padding: 8px 16px;
+background: #f3e8ff;
+border: 1px solid #c084fc;
+border-radius: 999px;
   color: #7c3aed;
   font-weight: 700;
   text-transform: uppercase;

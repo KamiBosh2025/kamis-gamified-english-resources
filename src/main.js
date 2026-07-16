@@ -11,7 +11,7 @@ document.querySelector('#app').innerHTML = `
   <main>
     <section class="hero container">
       <div class="hero-content">
-        <p class="eyebrow">Learn. Play. Improve.</p>
+        <p class="eyebrow">Learn. Play. Enjoy.</p>
         <h2>Make English learning more engaging</h2>
         <p>
           Explore carefully selected gamified resources designed for students and teachers.
@@ -22,6 +22,9 @@ document.querySelector('#app').innerHTML = `
           <a href="#about" class="button secondary-button">Learn More</a>
         </div>
       </div>
+      <div class="hero-image">
+  <img src="/src/assets/teacher-brain.png" alt="Miss Boshlova's Teacher Brain">
+</div>
     </section>
 
     <section id="resources" class="resources-section container">
