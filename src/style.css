@@ -139,7 +139,7 @@ border-radius: 999px;
 .resources-section p,
 .about-section p {
   color: #4b5563;
-  text-align: center;
+  text-align: justify;
 }
 
 .resource-grid {

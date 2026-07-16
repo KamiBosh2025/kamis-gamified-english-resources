@@ -81,7 +81,7 @@ document.querySelector('#app').innerHTML = `
     <section id="about" class="about-section container">
       <h2>About the Project</h2>
       <p>
-        This website brings together gamified English learning activities in one easy-to-use place.
+        This project brings together carefully selected Kahoot and Wordwall activities created by me for students from 2nd to 9th grade studying English as a second language in a non-intensive programme. Most of the resources are designed for beginner learners at A1 level. Many of the activities include original handmade illustrations, animated GIFs, audio, and other multimedia elements that support understanding and maintain students’ interest. They aim to make English learning more engaging, interactive, and enjoyable and can be used for grammar practice, vocabulary revision, tests, classroom games, and independent learning. The website brings all these resources together in one easy-to-use place and provides quick access to featured activities as well as my complete public resource libraries.
       </p>
     </section>
   </main>
