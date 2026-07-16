@@ -133,11 +133,13 @@ border-radius: 999px;
   font-size: 1.8rem;
   margin-bottom: 12px;
   color: #111827;
+  text-align: center;
 }
 
 .resources-section p,
 .about-section p {
   color: #4b5563;
+  text-align: center;
 }
 
 .resource-grid {
@@ -186,6 +188,7 @@ border-radius: 999px;
   border-radius: 18px;
     margin-bottom: 34px;
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  text-align: center;
 }
 
 .library-links {
@@ -193,6 +196,7 @@ border-radius: 999px;
   flex-wrap: wrap;
   gap: 18px;
   margin-top: 22px;
+  justify-content: center;
 }
 @media (max-width: 700px) {
   .site-header h1 {

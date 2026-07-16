@@ -5,6 +5,12 @@ document.querySelector('#app').innerHTML = `
     <div class="container">
       <h1>Kami's Gamified English Resources</h1>
       <p>Interactive Kahoot and Wordwall activities for engaging English lessons.</p>
+      <nav class="main-nav">
+  <a href="#">Home</a>
+  <a href="#resources">Resources</a>
+  <a href="#libraries">Libraries</a>
+  <a href="#about">About</a>
+</nav>
     </div>
   </header>
 
@@ -19,7 +25,7 @@ document.querySelector('#app').innerHTML = `
 
         <div class="hero-actions">
           <a href="#resources" class="button primary-button">Browse Resources</a>
-          <a href="#about" class="button secondary-button">Learn More</a>
+          <a href="#about" class="button primary-button">Learn More</a>
         </div>
       </div>
       <div class="hero-image">
@@ -64,7 +70,7 @@ document.querySelector('#app').innerHTML = `
 
     <a
       href="https://wordwall.net/teacher/27220547"
-      class="button secondary-button"
+      class="button primary-button"
       target="_blank"
       rel="noopener noreferrer"
     >
