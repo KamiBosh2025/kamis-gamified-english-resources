@@ -37,19 +37,52 @@ document.querySelector('#app').innerHTML = `
       <h2>Featured Resources</h2>
 
 <div class="resource-grid">
-  <article class="resource-card">
-    <span class="resource-type">Kahoot</span>
-    <h3>English Grammar Challenge</h3>
-    <p>Practice grammar through an engaging interactive quiz.</p>
-    <a href="#" class="card-link">Open Resource</a>
-  </article>
+ <article class="resource-card">
+  <span class="resource-type">Kahoot</span>
+
+  <h3>Brilliant — Mixed English Challenge</h3>
+
+  <p>
+    A lively 31-question bilingual Kahoot combining vocabulary, grammar,
+    translation, sentence building and visual tasks through a wide variety
+    of interactive question types.
+  </p>
+
+  <a
+    href="https://create.kahoot.it/share/brilliant/da0281a5-161a-47ad-a1c5-398ae421257f"
+    class="card-link"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Open in a New Tab
+  </a>
+</article>
 
   <article class="resource-card">
-    <span class="resource-type">Wordwall</span>
-    <h3>Vocabulary Practice</h3>
-    <p>Review useful English vocabulary through a playful activity.</p>
-    <a href="#" class="card-link">Open Resource</a>
-  </article>
+  <span class="resource-type">Wordwall</span>
+
+  <h3>A General Review</h3>
+
+  <p>
+    A 30-question ESL review for 7th–9th grade covering Present Perfect,
+    verb forms, phrasal verbs, time expressions, social language and
+    vocabulary for communication and cultural awareness.
+  </p>
+
+  <a
+    href="https://wordwall.net/resource/113866675"
+    class="card-link"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Open in a New Tab
+  </a>
+</article>
+</div>
+<div class="how-to-link-wrap">
+  <a href="/big-bad-wolf.html#how-to-use" class="card-link">
+    How to Use the Resources
+  </a>
 </div>
     </section>
 <section id="libraries" class="libraries-section container">

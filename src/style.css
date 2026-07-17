@@ -513,3 +513,34 @@ border-radius: 999px;
 .about-section p {
   margin-bottom: 18px;
 }
+.resource-card .resource-type,
+.resource-card h3,
+.resource-card .card-link {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.resource-card .card-link {
+  margin-top: 14px;
+}
+.resource-card:nth-child(2) .card-link {
+  margin-top: 18px;
+}
+.how-to-link-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.how-to-link-wrap .card-link {
+  display: inline-block;
+  padding: 12px 22px;
+  border: 2px solid #7c3aed;
+  border-radius: 10px;
+}
+.how-to-use p {
+  text-align: justify;
+}
