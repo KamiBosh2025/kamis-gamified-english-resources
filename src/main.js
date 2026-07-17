@@ -81,7 +81,29 @@ document.querySelector('#app').innerHTML = `
     <section id="about" class="about-section container">
       <h2>About the Project</h2>
       <p>
-        This project brings together carefully selected Kahoot and Wordwall activities created by me for students from 2nd to 9th grade studying English as a second language in a non-intensive programme. Most of the resources are designed for beginner learners at A1 level. Many of the activities include original handmade illustrations, animated GIFs, audio, and other multimedia elements that support understanding and maintain students’ interest. They aim to make English learning more engaging, interactive, and enjoyable and can be used for grammar practice, vocabulary revision, tests, classroom games, and independent learning. The website brings all these resources together in one easy-to-use place and provides quick access to featured activities as well as my complete public resource libraries.
+       <p>
+  This project grew out of my everyday work as an English teacher. I create
+  Kahoot and Wordwall activities mainly for learners from 2nd to 9th grade,
+  especially beginners who need more visual support, clearer explanations
+  and a stronger reason to stay engaged.
+</p>
+
+<p>
+  The game-based format brings challenge, curiosity, fun and a healthy
+  competitive spirit. It helps students learn while enjoying themselves,
+  take part more actively, make mistakes without fear, try again and improve
+  their results.
+</p>
+
+<p>
+  I also genuinely enjoy creating the resources — designing original images
+  and audio, searching for suitable GIFs and videos, and translating ideas
+  from Bulgarian into English and back again. The activities combine grammar,
+  vocabulary, storytelling, humour and meaningful topics, and can be used for
+  classroom games, revision, tests and independent learning. This website
+  brings my selected resources and public libraries together in one
+  easy-to-use place.
+</p> 
       </p>
     </section>
   </main>

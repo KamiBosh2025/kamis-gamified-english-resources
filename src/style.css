@@ -481,3 +481,35 @@ border-radius: 999px;
   line-height: 1.7;
   margin-bottom: 16px;
 }
+.resource-details-content > .resource-type,
+.resource-details-content > h1,
+.resource-details-content > h2,
+.resource-details-content > h3 {
+  text-align: center;
+}
+
+.resource-details-content > p {
+  text-align: justify;
+}
+
+.resource-details-content .learning-goals {
+  text-align: center;
+}
+.resource-details-content > .resource-type {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 18px;
+}
+
+.resource-details-content > h3 {
+  margin-top: 28px;
+  margin-bottom: 14px;
+}
+.resource-details-content > .resource-platform {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 18px;
+}
+.about-section p {
+  margin-bottom: 18px;
+}
