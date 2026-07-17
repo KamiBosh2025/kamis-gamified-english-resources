@@ -467,3 +467,17 @@ border-radius: 999px;
   justify-content: center;
   margin-top: 36px;
 }
+.how-to-use {
+  margin-top: 42px;
+}
+
+.how-to-use h3,
+.video-section h3 {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.how-to-use p {
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
