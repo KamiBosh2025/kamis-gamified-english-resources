@@ -7,7 +7,7 @@ document.querySelector('#app').innerHTML = `
       <p>Interactive Kahoot and Wordwall activities for engaging English lessons.</p>
       <nav class="main-nav">
   <a href="#">Home</a>
-  <a href="#resources">Resources</a>
+  <a href="/resources.html">Resources</a>
   <a href="#libraries">Libraries</a>
   <a href="#about">About</a>
 </nav>
