@@ -556,3 +556,50 @@ border-radius: 999px;
 .how-to-use p {
   text-align: justify;
 }
+#play-here iframe {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.resource-meta {
+  text-align: center;
+}
+
+.resource-details-content > p:not(.resource-meta) {
+  text-align: justify;
+}
+
+.resource-details-content ul {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.details-button-wrap {
+  text-align: center;
+}
+.resource-meta {
+  text-align: center;
+}
+
+.details-button-wrap {
+  display: flex;
+  justify-content: center;
+}
+.resource-details-content .resource-meta {
+  width: 100%;
+  text-align: center !important;
+}
+
+.resource-details-content .details-button-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center !important;
+}
+
+.resource-details-content > p:not(.resource-meta) {
+  text-align: justify;
+}
+
+.resource-details-content ul {
+  text-align: left;
+}
