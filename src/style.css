@@ -255,7 +255,14 @@ border-radius: 999px;
   .about-section {
     padding: 28px 22px;
   }
+}.main-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
 }
+
 .main-nav a {
   display: inline-block;
   padding: 8px 14px;
@@ -331,6 +338,7 @@ border-radius: 999px;
   margin-bottom: 14px;
   color: #6d28d9;
   font-weight: 700;
+  text-align: center;
 }
 
 .resource-actions {
@@ -338,6 +346,7 @@ border-radius: 999px;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 20px;
+  justify-content: center;
 }
 
 .resource-button {
@@ -513,6 +522,7 @@ border-radius: 999px;
 .about-section p {
   margin-bottom: 18px;
 }
+.resource-card .resource-platform,
 .resource-card .resource-type,
 .resource-card h3,
 .resource-card .card-link {

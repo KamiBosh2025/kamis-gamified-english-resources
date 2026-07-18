@@ -9,6 +9,7 @@ document.querySelector('#app').innerHTML = `
   <a href="#">Home</a>
   <a href="/resources.html">Resources</a>
   <a href="#libraries">Libraries</a>
+  <a href="/how-to-use.html">How to Use</a>
   <a href="#about">About</a>
 </nav>
     </div>
@@ -82,7 +83,7 @@ document.querySelector('#app').innerHTML = `
 </article>
 </div>
 <div class="how-to-link-wrap">
-  <a href="/big-bad-wolf.html#how-to-use" class="card-link">
+  <a href="/how-to-use.html" class="card-link">
     How to Use the Resources
   </a>
 </div>
