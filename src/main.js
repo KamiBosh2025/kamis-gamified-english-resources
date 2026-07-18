@@ -46,6 +46,7 @@ document.querySelector('#app').innerHTML = `
     A lively 31-question bilingual Kahoot combining vocabulary, grammar,
     translation, sentence building and visual tasks through a wide variety
     of interactive question types.
+   Designed for learners in Grades 3–6, it keeps students actively involved through fast-paced and varied practice. 
   </p>
 
   <a
@@ -67,6 +68,7 @@ document.querySelector('#app').innerHTML = `
     A 30-question ESL review for 7th–9th grade covering Present Perfect,
     verb forms, phrasal verbs, time expressions, social language and
     vocabulary for communication and cultural awareness.
+    Special emphasis is placed on practical phrasal verbs commonly used in professional and business contexts.
   </p>
 
   <a

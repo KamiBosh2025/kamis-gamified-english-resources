@@ -523,11 +523,13 @@ border-radius: 999px;
   text-align: center;
 }
 
-.resource-card .card-link {
-  margin-top: 14px;
+.resource-card {
+  display: flex;
+  flex-direction: column;
 }
-.resource-card:nth-child(2) .card-link {
-  margin-top: 18px;
+
+.resource-card .card-link {
+  margin-top: auto;
 }
 .how-to-link-wrap {
   display: flex;
