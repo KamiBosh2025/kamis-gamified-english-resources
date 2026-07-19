@@ -28,17 +28,17 @@
         <h2>English Learning Resources</h2>
         <p>Browse selected Kahoot and Wordwall activities.</p>
 
-        <div class="resource-filters">
-          <button type="button" class="filter-button active">All</button>
-          <button type="button" class="filter-button">Kahoot</button>
-          <button type="button" class="filter-button">Wordwall</button>
-          <button type="button" class="filter-button">Primary</button>
-          <button type="button" class="filter-button">Lower Secondary</button>
-          <button type="button" class="filter-button">Mixed Skills</button>
-        </div>
+       <div class="resource-filters">
+  <button type="button" class="filter-button active" data-filter="all">All</button>
+  <button type="button" class="filter-button" data-filter="kahoot">Kahoot</button>
+  <button type="button" class="filter-button" data-filter="wordwall">Wordwall</button>
+  <button type="button" class="filter-button" data-filter="primary">Primary</button>
+  <button type="button" class="filter-button" data-filter="lower-secondary">Lower Secondary</button>
+  <button type="button" class="filter-button" data-filter="mixed-skills">Mixed Skills</button>
+</div>
 
         <div class="resource-grid">
-          <article class="resource-card resource-card-horizontal">
+          <article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="primary">
             <div class="resource-card-image-wrap">
               <img
                 src="/src/assets/big-bad-wolf-cover.png"
@@ -72,7 +72,7 @@
               </div>
             </div>
           </article>
-          <article class="resource-card resource-card-horizontal">
+        <article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="mixed-skills">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/motornica-na-znanieto.png"
@@ -107,7 +107,7 @@
     </div>
   </div>
 </article>
-<article class="resource-card resource-card-horizontal">
+<article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="mixed-skills">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/playful-English-Bulgarian-Quiz.png"
@@ -142,7 +142,7 @@
     </div>
   </div>
 </article>
-<article class="resource-card resource-card-horizontal">
+<article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="lower-secondary">
 
   <div class="resource-card-image-wrap">
     <img
@@ -177,8 +177,7 @@ alt="Everyday Directions and City Places Vocabulary"
     </div>
   </div>
 </article>
- <article class="resource-card resource-card-horizontal">
-
+<article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="mixed-skills">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/bulgarias-100-tourist-sites-challenge.webp"
@@ -212,7 +211,7 @@ alt="Bulgaria’s 100 Tourist Sites Challenge"
     </div>
   </div>
 </article>
- <article class="resource-card resource-card-horizontal">
+ <article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="lower-secondary">
 
   <div class="resource-card-image-wrap">
     <img
@@ -248,7 +247,7 @@ alt="Bulgarian–English Fun Word Mix"
   </div>
 </article>
 
- <article class="resource-card resource-card-horizontal">
+<article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="primary">
 
   <div class="resource-card-image-wrap">
     <img
@@ -283,7 +282,7 @@ alt="Have fun, kids!"
     </div>
   </div>
 </article> 
- <article class="resource-card resource-card-horizontal">
+ <article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="lower-secondary">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/amazing-planet-earth.png"
@@ -325,7 +324,7 @@ alt="Have fun, kids!"
     </div>
   </div>
 </article> 
-<article class="resource-card resource-card-horizontal">
+<article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="mixed-skills">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/crazy-insects.png"
@@ -365,8 +364,8 @@ alt="Crazy Insects"
       </a>
     </div>
   </div>
-</article> 
- <article class="resource-card resource-card-horizontal">
+</article>
+<article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="mixed-skills">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/click-only-present-simple-tense.png"
@@ -405,5 +404,28 @@ alt="Crazy Insects"
 </div>
       </section>
     </main>
+    <script>
+  const filterButtons = document.querySelectorAll(".filter-button");
+  const resourceCards = document.querySelectorAll(".resource-card");
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const selectedFilter = button.dataset.filter;
+
+      filterButtons.forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+
+      resourceCards.forEach((card) => {
+        const matchesPlatform = card.dataset.platform === selectedFilter;
+        const matchesCategory = card.dataset.category === selectedFilter;
+
+        card.style.display =
+          selectedFilter === "all" || matchesPlatform || matchesCategory
+            ? ""
+            : "none";
+      });
+    });
+  });
+</script>
   </body>
 </html>
