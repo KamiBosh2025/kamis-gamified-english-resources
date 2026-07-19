@@ -656,3 +656,6 @@ border-radius: 999px;
   display: flex;
   justify-content: center;
 }
+.resource-card-content > p:not(.resource-meta) {
+  text-align: justify;
+}
