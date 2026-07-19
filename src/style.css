@@ -603,3 +603,49 @@ border-radius: 999px;
 .resource-details-content ul {
   text-align: left;
 }
+.resource-card .resource-image {
+  max-height: 420px;
+  width: auto;
+  object-fit: contain;
+}
+.resource-details-content h2 {
+  margin-bottom: 18px;
+}
+
+.resource-details-content .resource-meta {
+  margin-top: 0;
+  margin-bottom: 22px;
+}
+.resource-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.resource-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.resource-actions {
+  margin-top: auto;
+}
+
+.resource-card-image-wrap {
+  height: 390px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resource-card .resource-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.resource-details-layout > .details-button-wrap {
+  grid-column: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
