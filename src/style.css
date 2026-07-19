@@ -629,6 +629,7 @@ border-radius: 999px;
 
 .resource-actions {
   margin-top: auto;
+ padding-top: 20px; 
 }
 
 .resource-card-image-wrap {
