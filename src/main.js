@@ -1,4 +1,5 @@
 import './style.css'
+import { supabase } from './supabase.js'
 
 document.querySelector('#app').innerHTML = `
   <header class="site-header">
