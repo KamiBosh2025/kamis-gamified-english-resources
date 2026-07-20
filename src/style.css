@@ -659,3 +659,109 @@ border-radius: 999px;
 .resource-card-content > p:not(.resource-meta) {
   text-align: justify;
 }
+/* Login and Admin pages */
+
+.login-section,
+.admin-section {
+  max-width: 680px;
+  margin: 48px auto;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid #d8c8ff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(74, 45, 140, 0.12);
+}
+
+.login-section h2,
+.admin-section h2 {
+  margin-top: 0;
+  color: #3f2573;
+  text-align: center;
+}
+
+#login-form,
+#resource-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+#login-form label,
+#resource-form label {
+  color: #3f2573;
+  font-weight: 700;
+}
+
+#login-form input,
+#resource-form input,
+#resource-form select,
+#resource-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bca7e8;
+  border-radius: 10px;
+  font: inherit;
+  background: #ffffff;
+}
+
+#resource-form textarea {
+  resize: vertical;
+}
+
+#login-form button,
+#resource-form button,
+#logout-button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  background: #7c3aed;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#login-form button:hover,
+#resource-form button:hover,
+#logout-button:hover {
+  background: #5b21b6;
+}
+
+#login-message,
+#admin-message {
+  min-height: 24px;
+  margin: 0;
+  color: #3f2573;
+  font-weight: 700;
+}
+.login-section > p {
+  text-align: center;
+}
+
+.saved-resource-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.saved-resource-actions a,
+.saved-resource-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #7c3aed;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.saved-resource-actions a:hover,
+.saved-resource-actions button:hover {
+  background: #5b21b6;
+}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel | Kami's Gamified English Resources</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Admin Panel</h1>
+        <p>Manage the teaching resources.</p>
+
+        <nav class="main-nav">
+          <a href="/index.html">Home</a>
+          <a href="/resources.html">Resources</a>
+          <button type="button" id="logout-button">Sign Out</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="admin-section">
+        <h2>Add New Resource</h2>
+
+        <form id="resource-form">
+          <label for="title">Title</label>
+          <input type="text" id="title" required />
+
+         
+
+          <label for="platform">Platform</label>
+          <input
+  type="text"
+  id="platform"
+  list="platform-options"
+  placeholder="Choose or type a platform"
+  required
+/>
+<datalist id="platform-options">
+  <option value="Kahoot"></option>
+  <option value="Wordwall"></option>
+  <option value="No Platform"></option>
+</datalist>
+
+          <label for="description">Description</label>
+          <textarea id="description" rows="5" required></textarea>
+
+          <label for="category">Category</label>
+          <input type="text" id="category" required />
+
+          <label for="resource-url">Main Resource URL</label>
+          <input type="url" id="resource-url" placeholder="Link to the webpage or online activity" />
+          <label for="image-url">Optional Cover Image URL</label>
+          <input type="text" id="image-url" />
+<label for="media-type">Additional Media Type</label>
+<select id="media-type">
+  <option value="">No additional media</option>
+  <option value="image">Image</option>
+  <option value="video">Video</option>
+  <option value="audio">Audio</option>
+  <option value="document">Document</option>
+</select>
+
+<div id="additional-media-fields" hidden>
+  <label for="media-source">Additional Media Source</label>
+  <select id="media-source">
+    <option value="">Choose a source</option>
+    <option value="external">External URL</option>
+    <option value="upload">Upload from Computer</option>
+  </select>
+
+  <div id="external-media-field" hidden>
+    <label for="media-url">Additional External Media URL</label>
+    <input
+      type="url"
+      id="media-url"
+      placeholder="Direct link to an additional image, audio, video or document"
+    />
+  </div>
+
+  <div id="upload-media-field" hidden>
+    <label for="media-file">Upload Additional Media File</label>
+    <input
+      type="file"
+      id="media-file"
+      multiple
+      accept="image/*,video/*,audio/*,.pdf,.txt,.doc,.docx"
+    />
+  </div>
+</div>
+
+          <label for="grade-level">Grade Level</label>
+          <input type="text" id="grade-level" required />
+
+          <button type="submit">Add Resource</button>
+          <p id="admin-message"></p>
+        </form>
+<h2>Saved Resources</h2>
+<div id="resources-list"></div>
+</section>
+</main>
+
+    <script type="module" src="/src/admin.js"></script>
+  </body>
+</html>
