@@ -5,6 +5,7 @@ const adminMessage = document.querySelector('#admin-message')
 const logoutButton = document.querySelector('#logout-button')
 const mediaRoleSelect = document.querySelector('#media-role')
 const mediaTypeSelect = document.querySelector('#media-type')
+const demonstrationTypeSelect = document.querySelector('#demonstration-type')
 const mediaSourceSelect = document.querySelector('#media-source')
 const additionalMediaFields = document.querySelector('#additional-media-fields')
 const externalMediaField = document.querySelector('#external-media-field')
@@ -255,6 +256,7 @@ if (!user) {
       const mediaRole = mediaRoleSelect.value || 'main'
       const mediaType = mediaTypeSelect.value
       const mediaSource = mediaSourceSelect.value
+      const demonstrationType = demonstrationTypeSelect.value
       const mediaFiles = getSelectedFiles()
       const externalMediaUrl = mediaUrlInput.value.trim()
       const mainResourceUrl =
@@ -303,6 +305,7 @@ if (!user) {
         platform: document.querySelector('#platform').value.trim(),
         description: document.querySelector('#description').value.trim(),
         category: document.querySelector('#category').value.trim(),
+        demonstration_type: demonstrationType || null,
         resource_url: mainResourceUrl || null,
         image_url:
           document.querySelector('#image-url').value.trim() || null,
@@ -791,7 +794,7 @@ function createFolderMediaGroup(mediaItems, onDeleteFile) {
         document.querySelector('#image-url').value = resource.image_url || ''
         document.querySelector('#grade-level').value =
           resource.grade_level || ''
-
+demonstrationTypeSelect.value = resource.demonstration_type || ''
         const firstMediaItem = editingExistingMediaItems[0]
 
         if (firstMediaItem) {

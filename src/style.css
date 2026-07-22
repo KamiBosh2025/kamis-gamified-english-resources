@@ -1045,3 +1045,63 @@ text-align-last: left;
     min-width: 0;
   }
 }
+
+.external-demo-block {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 2px solid rgba(93, 41, 139, 0.18);
+}
+
+.external-demo-block p {
+  margin-bottom: 24px;
+}
+
+.external-demo-block .btn {
+  margin-top: 12px;
+  margin-bottom: 40px;
+}
+.external-demo-block iframe + p {
+  margin-top: 20px;
+}
+.external-source {
+  margin-top: 24px !important;
+  margin-bottom: 20px !important;
+}
+.teaching-demo-container .btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 10px;
+  background: #7c3aed;
+  border: 2px solid #7c3aed;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.teaching-demo-container .btn:hover {
+  background: #6d28d9;
+  border-color: #6d28d9;
+  color: #ffffff;
+}
+.resources-page > .resource-actions {
+  margin-top: 36px;
+  margin-bottom: 28px;
+  gap: 16px;
+}
+
+.resources-page > .resource-filters {
+  margin-top: 0;
+}
+.teaching-demo-actions .btn,
+.teaching-demo-container .btn {
+  background: #7c3aed;
+  border: 2px solid #7c3aed;
+  color: #ffffff;
+}
+
+.teaching-demo-actions .btn:hover,
+.teaching-demo-container .btn:hover {
+  background: #6d28d9;
+  border-color: #6d28d9;
+  color: #ffffff;
+}
