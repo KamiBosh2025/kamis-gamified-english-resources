@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Local backup files
+BACKUP-*/
+*.bak
+*.backup
+*.backup-*
+*.before-*
+*.CORRUPTED-*

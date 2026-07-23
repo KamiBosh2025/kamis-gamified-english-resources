@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | Kami's Gamified English Resources</title>
+    <link rel="stylesheet" href="/src/bootstrap-entry.css" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Kami's Gamified English Resources</h1>
+        <p>Interactive Kahoot and Wordwall activities for engaging English lessons.</p>
+        <nav class="main-nav">
+          <a href="/index.html">Home</a>
+          <a href="/resources.html">Resources</a>
+          <a href="/index.html#libraries">Libraries</a>
+          <a href="/how-to-use.html">How to Use</a>
+          <a href="/index.html#about">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="login-section auth-card">
+        <h2>Create an Account</h2>
+        <p>Register as a learner to save favorite resources.</p>
+        <form id="register-form">
+          <label for="full-name">Full Name</label>
+          <input id="full-name" name="full-name" type="text" autocomplete="name" required />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="new-password" minlength="6" required />
+
+          <label for="confirm-password">Confirm Password</label>
+          <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="6" required />
+
+          <button type="submit">Register</button>
+          <p id="register-message" class="form-message" aria-live="polite"></p>
+        </form>
+        <p class="auth-switch">Already registered? <a href="/login.html">Sign in</a>.</p>
+      </section>
+    </main>
+
+    <script type="module" src="/src/register.js"></script>
+    <script type="module" src="/src/auth-nav.js"></script>
+  </body>
+</html>

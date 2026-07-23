@@ -1,5 +1,5 @@
 import './style.css'
-import { supabase } from './supabase.js'
+import { initAuthNavigation } from './auth-nav.js'
 
 document.querySelector('#app').innerHTML = `
   <header class="site-header">
@@ -117,8 +117,8 @@ document.querySelector('#app').innerHTML = `
 </section>
     <section id="about" class="about-section container">
       <h2>About the Project</h2>
-      <p>
-       <p>
+      <div class="about-copy">
+<p>
   This project grew out of my everyday work as an English teacher. I create
   Kahoot and Wordwall activities mainly for learners from 2nd to 9th grade,
   especially beginners who need more visual support, clearer explanations
@@ -140,8 +140,42 @@ document.querySelector('#app').innerHTML = `
   classroom games, revision, tests and independent learning. This website
   brings my selected resources and public libraries together in one
   easy-to-use place.
-</p> 
-      </p>
+</p>
+      </div>
+    </section>
+    <section id="author" class="about-section author-section container">
+      <h2>About the Author</h2>
+      <div class="about-copy">
+        <p>
+          My name is Kameliya Boshlova, and I have been teaching English at
+          Secondary School “St. St. Cyril and Methodius” in the town of Bregovo,
+          Vidin Region, since 2022. I enjoy creating my own interactive learning
+          resources and exploring practical ways to improve language education
+          through modern technologies and artificial intelligence.
+        </p>
+
+        <p>
+          I decided to bring the resources I have created together in one website
+          because my everyday teaching practice has shown me that education often
+          requires flexibility, quick adaptation and a willingness to try new
+          approaches. When traditional methods are no longer enough to motivate
+          today’s young learners, learning through play can awaken curiosity,
+          strengthen participation and give students the desire to challenge
+          themselves and succeed. This is why gamified learning has become an
+          important part of my work.
+        </p>
+
+        <p>
+          My aim is to make English lessons more engaging, more effective and
+          closer to the interests of contemporary learners, while supporting both
+          teachers and students with resources that are clear, creative and easy
+          to use.
+        </p>
+
+        <p class="author-contact">
+          Contact: <a href="mailto:kameliyaboshlova@yahoo.com">kameliyaboshlova@yahoo.com</a>
+        </p>
+      </div>
     </section>
   </main>
   <footer class="site-footer">
@@ -153,3 +187,5 @@ document.querySelector('#app').innerHTML = `
   </div>
 </footer>
 `
+
+await initAuthNavigation()

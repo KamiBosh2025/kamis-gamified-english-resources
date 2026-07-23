@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile | Kami's Gamified English Resources</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Kami's Gamified English Resources</h1>
+        <p>Interactive Kahoot and Wordwall activities for engaging English lessons.</p>
+        <nav class="main-nav">
+          <a href="/index.html">Home</a>
+          <a href="/resources.html">Resources</a>
+          <a href="/index.html#libraries">Libraries</a>
+          <a href="/how-to-use.html">How to Use</a>
+          <a href="/index.html#about">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container profile-main">
+      <section class="profile-card">
+        <h2>My Profile</h2>
+        <dl class="profile-details">
+          <div><dt>Name</dt><dd id="profile-name">Loading...</dd></div>
+          <div><dt>Email</dt><dd id="profile-email">Loading...</dd></div>
+          <div><dt>Role</dt><dd id="profile-role">Loading...</dd></div>
+        </dl>
+        <form id="profile-form">
+          <label for="profile-name-input">Edit display name</label>
+          <input id="profile-name-input" type="text" required />
+          <button type="submit">Save Profile</button>
+        </form>
+        <p id="profile-update-message" class="form-message" aria-live="polite"></p>
+        <p id="profile-message" class="form-message" aria-live="polite"></p>
+      </section>
+
+
+      <section class="profile-card account-access-card">
+        <h2>My Account Access</h2>
+        <p>Registered users can save public resources to Favorites and open them later from this profile.</p>
+        <p>Files can be downloaded only when the author has provided a specific download button. Kahoot and Wordwall activities are saved as links and remain on their original platforms.</p>
+      </section>
+      <section class="profile-card danger-zone">
+      <h2>Delete Account</h2>
+      <p>
+        Permanently delete your profile, saved favourites, and account data.
+        This action cannot be undone.
+      </p>
+      <button id="delete-account-button" type="button" class="delete-account-button">
+        Delete My Account
+      </button>
+      <p id="delete-account-message" class="form-message" aria-live="polite"></p>
+    </section>
+  </main>
+
+    <script type="module" src="/src/profile.js"></script>
+    <script type="module" src="/src/auth-nav.js"></script>
+  </body>
+</html>
+
+

@@ -22,12 +22,19 @@
         </nav>
       </div>
     </header>
-
-    <main class="container">
+    <main class="resources-main">
       <section class="resources-page">
         <h2>English Learning Resources</h2>
         <p>Browse selected Kahoot and Wordwall activities.</p>
+<div class="resource-actions">
+  <a href="/teaching-demonstration.html" class="resource-button">
+    My Teaching Demonstrations
+  </a>
 
+  <a href="/external-teaching-examples.html" class="resource-button">
+    External Teaching Examples
+  </a>
+</div>
        <div class="resource-filters">
   <button type="button" class="filter-button active" data-filter="all">All</button>
   <button type="button" class="filter-button" data-filter="kahoot">Kahoot</button>
@@ -68,7 +75,6 @@
                 <a href="/big-bad-wolf.html" class="resource-button">View Details</a>
                 
   <a href="https://create.kahoot.it/share/the-big-bad-wolf-s-story/26f7c1b1-9ec4-4cff-b1ef-f678d1c9b3b9" class="resource-button secondary" target="_blank" rel="noopener noreferrer">Play on Kahoot</a>
-</a>
               </div>
             </div>
           </article>
@@ -403,29 +409,9 @@ alt="Crazy Insects"
 </article>
 </div>
       </section>
+      
     </main>
-    <script>
-  const filterButtons = document.querySelectorAll(".filter-button");
-  const resourceCards = document.querySelectorAll(".resource-card");
-
-  filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const selectedFilter = button.dataset.filter;
-
-      filterButtons.forEach((item) => item.classList.remove("active"));
-      button.classList.add("active");
-
-      resourceCards.forEach((card) => {
-        const matchesPlatform = card.dataset.platform === selectedFilter;
-        const matchesCategory = card.dataset.category === selectedFilter;
-
-        card.style.display =
-          selectedFilter === "all" || matchesPlatform || matchesCategory
-            ? ""
-            : "none";
-      });
-    });
-  });
-</script>
-  </body>
+    <script type="module" src="/src/resources.js"></script>
+    <script type="module" src="/src/auth-nav.js"></script>
+</body>
 </html>

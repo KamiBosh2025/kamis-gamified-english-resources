@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel | Kami's Gamified English Resources</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Admin Panel</h1>
+        <p>Manage the teaching resources.</p>
+
+        <nav class="main-nav">
+          <a href="/index.html">Home</a>
+          <a href="/resources.html">Resources</a>
+          <button type="button" id="logout-button">Sign Out</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="admin-section">
+        <h2>Add New Resource</h2>
+
+        <form id="resource-form">
+          <label for="title">Title</label>
+          <input type="text" id="title" required />
+
+          <label for="platform">Platform</label>
+          <input
+            type="text"
+            id="platform"
+            list="platform-options"
+            placeholder="Choose or type a platform"
+            required
+          />
+          <datalist id="platform-options">
+            <option value="Kahoot"></option>
+            <option value="Wordwall"></option>
+            <option value="Presentation"></option>
+            <option value="Document Collection"></option>
+            <option value="Audio Collection"></option>
+            <option value="NotebookLM"></option>
+            <option value="Suno"></option>
+            <option value="ElevenLabs"></option>
+            <option value="Video"></option>
+            <option value="No Platform"></option>
+          </datalist>
+
+          <label for="description">Description</label>
+          <textarea id="description" rows="5" required></textarea>
+
+          <label for="category">Category</label>
+          <input type="text" id="category" required />
+
+          <label for="resource-url">Main Resource URL</label>
+          <input
+            type="url"
+            id="resource-url"
+            placeholder="Link to the webpage or online activity"
+          />
+
+          <label for="image-url">Optional Cover Image URL</label>
+          <input type="text" id="image-url" />
+
+          <label for="media-role">How will this file be used?</label>
+          <select id="media-role">
+            <option value="main">Main Resource Content</option>
+            <option value="additional">Additional Media</option>
+          </select>
+
+          <label for="demonstration-type">Resource Section</label>
+          <select id="demonstration-type">
+            <option value="">Regular Resource</option>
+            <option value="my">My Teaching Demonstration</option>
+            <option value="external">External Teaching Example</option>
+          </select>
+
+          <p class="form-help">
+            Choose “Main Resource Content” when the uploaded file or folder is
+            the resource itself. Choose “Additional Media” only when the main
+            resource is already provided through Main Resource URL.
+          </p>
+
+          <label for="media-type">Uploaded / Linked File Type</label>
+          <select id="media-type">
+            <option value="">No uploaded or linked file</option>
+            <option value="image">Image</option>
+            <option value="video">Video</option>
+            <option value="audio">Audio</option>
+            <option value="document">Document / Book</option>
+            <option value="presentation">Presentation</option>
+            <option value="collection">Mixed File Collection</option>
+          </select>
+
+          <div id="additional-media-fields" hidden>
+            <label for="media-source">File Source</label>
+            <select id="media-source">
+              <option value="">Choose a source</option>
+              <option value="external">External URL</option>
+              <option value="upload">Upload from Computer</option>
+            </select>
+
+            <div id="external-media-field" hidden>
+              <label for="media-url">External File URL</label>
+              <input
+                type="url"
+                id="media-url"
+                placeholder="Direct link to an image, audio, video, document or presentation"
+              />
+            </div>
+
+            <div id="upload-media-field" hidden>
+              <label for="media-file">Upload One or More Files</label>
+              <input type="file" id="media-file" multiple />
+
+              <p class="upload-separator"><strong>or</strong></p>
+
+              <label for="media-folder">Upload a Whole Folder</label>
+              <input
+                type="file"
+                id="media-folder"
+                webkitdirectory
+                directory
+                multiple
+              />
+
+              <p id="selected-files-summary" aria-live="polite">
+                No files selected.
+              </p>
+
+              <p class="form-help">
+                You can upload audio, books, documents, presentations, images,
+                mixed folders and common video formats. The app does not impose
+                its own file-size limit; Supabase Storage and your plan may still
+                impose server-side limits.
+              </p>
+            </div>
+          </div>
+
+          <label for="grade-level">Grade Level</label>
+          <input type="text" id="grade-level" required />
+
+          <button type="submit">Add Resource</button>
+          <p id="admin-message" aria-live="polite"></p>
+        </form>
+
+        <h2>Saved Resources</h2>
+        <div id="resources-list"></div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/admin.js"></script>
+  </body>
+</html>
