@@ -66,6 +66,21 @@
           <label for="image-url">Optional Cover Image URL</label>
           <input type="text" id="image-url" />
 
+          <p class="upload-separator"><strong>or</strong></p>
+
+          <label for="cover-image-file">
+            Upload Cover Image from Computer
+          </label>
+          <input
+            type="file"
+            id="cover-image-file"
+            accept="image/*,.jpg,.jpeg,.png,.gif,.webp,.avif"
+          />
+
+          <p class="form-help">
+            Choose either a cover image URL or one image file from your computer.
+          </p>
+
           <label for="media-role">How will this file be used?</label>
           <select id="media-role">
             <option value="main">Main Resource Content</option>
@@ -141,10 +156,146 @@
             </div>
           </div>
 
-          <label for="grade-level">Grade Level</label>
-          <input type="text" id="grade-level" required />
+          <fieldset class="admin-form-group">
+            <legend>Learner Level</legend>
+
+            <div class="grade-range-grid">
+              <div>
+                <label for="start-grade">Start Grade</label>
+                <input
+                  type="number"
+                  id="start-grade"
+                  min="1"
+                  max="12"
+                  step="1"
+                  required
+                  placeholder="Example: 5"
+                />
+              </div>
+
+              <div>
+                <label for="end-grade">End Grade — optional</label>
+                <input
+                  type="number"
+                  id="end-grade"
+                  min="1"
+                  max="12"
+                  step="1"
+                  placeholder="Example: 7"
+                />
+              </div>
+            </div>
+
+            <label class="inline-checkbox" for="grade-and-above">
+              <input type="checkbox" id="grade-and-above" />
+              <span>This grade and above</span>
+            </label>
+
+            <label for="resource-level">Language Level — optional</label>
+            <input
+              type="text"
+              id="resource-level"
+              placeholder="Example: A2-B1"
+            />
+          </fieldset>
+
+          <fieldset class="admin-form-group">
+            <legend>Skills and Topics</legend>
+
+            <p class="form-field-hint">
+              Choose all that apply.
+            </p>
+
+            <div id="skills-checkboxes" class="skills-checkbox-grid">
+              <label class="skill-option">
+                <input type="checkbox" value="Grammar" />
+                <span>Grammar</span>
+              </label>
+
+              <label class="skill-option">
+                <input type="checkbox" value="Vocabulary" />
+                <span>Vocabulary</span>
+              </label>
+
+              <label class="skill-option">
+                <input type="checkbox" value="Reading" />
+                <span>Reading</span>
+              </label>
+
+              <label class="skill-option">
+                <input type="checkbox" value="Listening" />
+                <span>Listening</span>
+              </label>
+
+              <label class="skill-option">
+                <input type="checkbox" value="Speaking" />
+                <span>Speaking</span>
+              </label>
+
+              <label class="skill-option">
+                <input type="checkbox" value="Writing" />
+                <span>Writing</span>
+              </label>
+
+              <label class="skill-option">
+                <input type="checkbox" value="Translation" />
+                <span>Translation</span>
+              </label>
+
+              <label class="skill-option">
+                <input type="checkbox" value="Culture" />
+                <span>Culture</span>
+              </label>
+            </div>
+
+            <label for="other-skills">
+              Other skills or topics — optional
+            </label>
+            <input
+              type="text"
+              id="other-skills"
+              placeholder="Example: Biology, Directions, General Knowledge"
+            />
+
+            <input type="hidden" id="skills-topics" />
+          </fieldset>
+
+          <details class="advanced-options">
+            <summary>Advanced Options</summary>
+
+            <div class="advanced-options-content">
+              <label for="details-page">
+                Custom Details Page — optional
+              </label>
+              <input
+                type="text"
+                id="details-page"
+                placeholder="Example: /big-bad-wolf.html"
+              />
+              <p class="form-field-hint">
+                Leave empty to use the automatic resource details page.
+              </p>
+            </div>
+          </details>
 
           <button type="submit">Add Resource</button>
+
+          <div id="admin-progress" class="admin-progress" hidden>
+            <div
+              id="admin-progress-track"
+              class="admin-progress-track"
+              role="progressbar"
+              aria-label="Resource save progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
+              <div id="admin-progress-bar" class="admin-progress-bar"></div>
+            </div>
+
+            <p id="admin-progress-text">Preparing...</p>
+          </div>
+
           <p id="admin-message" aria-live="polite"></p>
         </form>
 

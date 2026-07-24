@@ -1,4 +1,4 @@
-﻿* {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -688,6 +688,46 @@ border-radius: 999px;
   margin: 0;
   color: #3f2573;
   font-weight: 700;
+}
+
+#admin-message {
+  width: 100%;
+  text-align: center;
+}
+
+.admin-progress {
+  display: grid;
+  width: 100%;
+  gap: 8px;
+}
+
+.admin-progress[hidden] {
+  display: none;
+}
+
+.admin-progress-track {
+  width: 100%;
+  height: 14px;
+  overflow: hidden;
+  border: 1px solid #bca7e8;
+  border-radius: 999px;
+  background: #eee7ff;
+}
+
+.admin-progress-bar {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7c3aed, #a855f7);
+  transition: width 0.25s ease;
+}
+
+#admin-progress-text {
+  min-height: 24px;
+  margin: 0;
+  color: #3f2573;
+  font-weight: 700;
+  text-align: center;
 }
 .login-section > p {
   text-align: center;
@@ -1672,3 +1712,258 @@ button {
   text-align: center;
 }
 /* END RESOURCE DESCRIPTION CENTER */
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 48px;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100% !important;
+  padding-right: 56px !important;
+}
+
+.password-wrapper button.password-toggle {
+  position: absolute !important;
+  top: 50% !important;
+  right: 6px !important;
+  transform: translateY(-50%) !important;
+
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-size: 18px !important;
+  line-height: 1 !important;
+  cursor: pointer;
+  z-index: 2;
+}
+/* COMPACT SIGN-IN CARD */
+.compact-login-card {
+  padding-bottom: 24px !important;
+}
+
+.compact-login-card #login-form {
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.compact-login-card #login-form .auth-switch {
+  margin: 10px 0 0;
+}
+
+.compact-login-card #login-message:empty {
+  display: none;
+}
+
+.compact-login-card > .auth-switch {
+  margin: 14px 0 0;
+}
+/* END COMPACT SIGN-IN CARD */
+
+
+.compact-login-card { max-width: 560px !important; }
+
+/* PASSWORD HIDDEN SLASH */
+.password-wrapper button.password-toggle {
+  color: #5b21b6 !important;
+}
+
+.password-wrapper button.password-toggle.password-hidden::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: #5b21b6;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  pointer-events: none;
+}
+/* END PASSWORD HIDDEN SLASH */
+
+/* REGISTER CARD WIDTH */
+.register-card {
+  max-width: 600px !important;
+}
+/* END REGISTER CARD WIDTH */
+
+/* RESET PASSWORD CARD */
+.reset-card {
+  max-width: 560px !important;
+}
+
+#reset-password-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+#reset-password-form label {
+  color: #3f2573;
+  font-weight: 700;
+}
+
+#reset-password-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #c7b5f3;
+  border-radius: 10px;
+  background: #ffffff;
+  font: inherit;
+}
+
+#reset-password-form input:focus {
+  border-color: #6d28d9;
+  outline: 3px solid rgba(109, 40, 217, 0.16);
+}
+
+#reset-password-form > button[type="submit"] {
+  margin-top: 4px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #6d28d9;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#reset-password-form > button[type="submit"]:hover {
+  background: #5b21b6;
+}
+
+.password-hint {
+  margin: -4px 0 2px;
+  color: #625873;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+#reset-message:empty {
+  display: none;
+}
+/* END RESET PASSWORD CARD */
+
+/* SIMPLIFIED ADMIN RESOURCE FORM */
+
+.admin-form-group {
+  display: grid;
+  gap: 12px;
+  margin: 8px 0;
+  padding: 20px;
+  border: 1px solid #d8c8ff;
+  border-radius: 14px;
+  background: rgba(248, 245, 255, 0.72);
+}
+
+.admin-form-group legend {
+  padding: 0 8px;
+  color: #3f2573;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.grade-range-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.grade-range-grid > div {
+  display: grid;
+  gap: 8px;
+}
+
+.inline-checkbox,
+.skill-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+#resource-form .inline-checkbox input,
+#resource-form .skill-option input {
+  width: auto;
+  min-width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.skills-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 16px;
+}
+
+.skill-option {
+  padding: 9px 12px;
+  border: 1px solid #ded3f4;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.skill-option:has(input:checked) {
+  border-color: #7c3aed;
+  background: #ede9fe;
+}
+
+.advanced-options {
+  margin: 8px 0;
+  border: 1px solid #d8c8ff;
+  border-radius: 12px;
+  background: rgba(248, 245, 255, 0.72);
+}
+
+.advanced-options summary {
+  padding: 14px 18px;
+  color: #3f2573;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.advanced-options-content {
+  display: grid;
+  gap: 10px;
+  padding: 0 18px 18px;
+}
+
+.form-field-hint {
+  margin: 0;
+  color: #5b556d;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 620px) {
+  .grade-range-grid,
+  .skills-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* END SIMPLIFIED ADMIN RESOURCE FORM */

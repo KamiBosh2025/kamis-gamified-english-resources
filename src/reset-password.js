@@ -5,22 +5,32 @@ const passwordInput = document.querySelector('#new-password')
 const confirmInput = document.querySelector('#confirm-new-password')
 const message = document.querySelector('#reset-message')
 const submitButton = form.querySelector('button[type="submit"]')
-const togglePasswordsButton = document.querySelector('#toggle-reset-passwords')
 
-togglePasswordsButton.addEventListener('click', () => {
-  const passwordsAreVisible = passwordInput.type === 'text'
-  const nextType = passwordsAreVisible ? 'password' : 'text'
+const togglePasswordButton = document.querySelector('#toggle-new-password')
+const toggleConfirmationButton = document.querySelector(
+  '#toggle-confirm-new-password'
+)
 
-  passwordInput.type = nextType
-  confirmInput.type = nextType
-  togglePasswordsButton.textContent = passwordsAreVisible
-    ? '👁 Show passwords'
-    : '🙈 Hide passwords'
-  togglePasswordsButton.setAttribute(
-    'aria-pressed',
-    passwordsAreVisible ? 'false' : 'true'
-  )
-})
+function setUpPasswordToggle(input, button) {
+  button.addEventListener('click', () => {
+    const passwordIsHidden = input.type === 'password'
+
+    input.type = passwordIsHidden ? 'text' : 'password'
+    button.textContent = passwordIsHidden
+      ? '\u{1F648}'
+      : '\u{1F441}\uFE0F'
+
+    button.classList.toggle('password-hidden', !passwordIsHidden)
+
+    button.setAttribute(
+      'aria-label',
+      passwordIsHidden ? 'Hide password' : 'Show password'
+    )
+  })
+}
+
+setUpPasswordToggle(passwordInput, togglePasswordButton)
+setUpPasswordToggle(confirmInput, toggleConfirmationButton)
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault()
@@ -28,13 +38,14 @@ form.addEventListener('submit', async (event) => {
   const password = passwordInput.value
   const confirmation = confirmInput.value
 
-  if (password !== confirmation) {
-    message.textContent = 'The two passwords do not match.'
+  if (password.length < 8) {
+    message.textContent =
+      'The password must contain at least 8 characters.'
     return
   }
 
-  if (password.length < 6) {
-    message.textContent = 'The password must contain at least 6 characters.'
+  if (password !== confirmation) {
+    message.textContent = 'The two passwords do not match.'
     return
   }
 
@@ -43,7 +54,7 @@ form.addEventListener('submit', async (event) => {
 
   try {
     const {
-      data: { session }
+      data: { session },
     } = await supabase.auth.getSession()
 
     if (!session) {
@@ -64,6 +75,7 @@ form.addEventListener('submit', async (event) => {
     }, 1800)
   } catch (error) {
     console.error('Password update failed:', error)
+
     message.textContent =
       'This reset link is invalid or has expired. Request a new link from the Forgot Password page.'
   } finally {

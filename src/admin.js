@@ -2,10 +2,28 @@ import { supabase } from './supabase.js'
 
 const resourceForm = document.querySelector('#resource-form')
 const adminMessage = document.querySelector('#admin-message')
+const adminProgress = document.querySelector('#admin-progress')
+const adminProgressTrack = document.querySelector('#admin-progress-track')
+const adminProgressBar = document.querySelector('#admin-progress-bar')
+const adminProgressText = document.querySelector('#admin-progress-text')
 const logoutButton = document.querySelector('#logout-button')
 const mediaRoleSelect = document.querySelector('#media-role')
 const mediaTypeSelect = document.querySelector('#media-type')
 const demonstrationTypeSelect = document.querySelector('#demonstration-type')
+const imageUrlInput = document.querySelector('#image-url')
+const coverImageFileInput = document.querySelector('#cover-image-file')
+const startGradeInput = document.querySelector('#start-grade')
+const endGradeInput = document.querySelector('#end-grade')
+const gradeAndAboveInput = document.querySelector('#grade-and-above')
+const resourceLevelInput = document.querySelector('#resource-level')
+const skillsTopicsInput = document.querySelector('#skills-topics')
+const skillCheckboxes = [
+  ...document.querySelectorAll(
+    '#skills-checkboxes input[type="checkbox"]'
+  ),
+]
+const otherSkillsInput = document.querySelector('#other-skills')
+const detailsPageInput = document.querySelector('#details-page')
 const mediaSourceSelect = document.querySelector('#media-source')
 const additionalMediaFields = document.querySelector('#additional-media-fields')
 const externalMediaField = document.querySelector('#external-media-field')
@@ -16,6 +34,273 @@ const mediaFolderInput = document.querySelector('#media-folder')
 const selectedFilesSummary = document.querySelector('#selected-files-summary')
 const resourcesList = document.querySelector('#resources-list')
 const submitButton = resourceForm.querySelector('button[type="submit"]')
+
+let progressHideTimer = null
+
+function resetAdminProgress() {
+  clearTimeout(progressHideTimer)
+  adminProgress.hidden = true
+  adminProgressBar.style.width = '0%'
+  adminProgressTrack.setAttribute('aria-valuenow', '0')
+  adminProgressText.textContent = 'Preparing...'
+}
+
+function setAdminProgress(percent, text) {
+  clearTimeout(progressHideTimer)
+
+  const safePercent = Math.max(
+    0,
+    Math.min(100, Number(percent) || 0)
+  )
+
+  adminProgress.hidden = false
+  adminProgressBar.style.width = `${safePercent}%`
+  adminProgressTrack.setAttribute(
+    'aria-valuenow',
+    String(safePercent)
+  )
+  adminProgressText.textContent = text
+}
+
+function finishAdminProgress(text) {
+  setAdminProgress(100, text)
+  progressHideTimer = setTimeout(resetAdminProgress, 1800)
+}
+
+function parseSkillsAndTopics(value) {
+  const seen = new Set()
+
+  return String(value ?? '')
+    .split(/[,;·]+/)
+    .map((item) => item.trim())
+    .filter((item) => {
+      if (!item) return false
+
+      const key = item.toLowerCase()
+
+      if (seen.has(key)) return false
+
+      seen.add(key)
+      return true
+    })
+}
+
+function syncSkillsTopicsInput() {
+  const selectedSkills = skillCheckboxes
+    .filter((checkbox) => checkbox.checked)
+    .map((checkbox) => checkbox.value)
+
+  const otherSkills = parseSkillsAndTopics(
+    otherSkillsInput.value
+  )
+
+  skillsTopicsInput.value = [
+    ...selectedSkills,
+    ...otherSkills,
+  ].join(', ')
+}
+
+function populateSkillControls(skills) {
+  const normalizedSkills = skills.map((skill) =>
+    String(skill).trim().toLowerCase()
+  )
+
+  const standardSkillKeys = new Set(
+    skillCheckboxes.map((checkbox) =>
+      checkbox.value.toLowerCase()
+    )
+  )
+
+  skillCheckboxes.forEach((checkbox) => {
+    checkbox.checked = normalizedSkills.includes(
+      checkbox.value.toLowerCase()
+    )
+  })
+
+  otherSkillsInput.value = skills
+    .filter(
+      (skill) =>
+        !standardSkillKeys.has(
+          String(skill).trim().toLowerCase()
+        )
+    )
+    .join(', ')
+
+  syncSkillsTopicsInput()
+}
+
+skillCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener(
+    'change',
+    syncSkillsTopicsInput
+  )
+})
+
+otherSkillsInput.addEventListener(
+  'input',
+  syncSkillsTopicsInput
+)
+
+function formatGradeLabel(startGrade, endGrade, andAbove) {
+  if (andAbove) {
+    return `Grade ${startGrade} and above`
+  }
+
+  if (endGrade && endGrade !== startGrade) {
+    return `Grades ${startGrade} - ${endGrade}`
+  }
+
+  return `Grade ${startGrade}`
+}
+
+function gradeRangeOverlaps(
+  startGrade,
+  endGrade,
+  andAbove,
+  minimum,
+  maximum
+) {
+  const resolvedEnd = andAbove
+    ? 12
+    : endGrade || startGrade
+
+  return startGrade <= maximum && resolvedEnd >= minimum
+}
+
+function buildAutomaticFilterGroup(
+  startGrade,
+  endGrade,
+  andAbove,
+  skills,
+  category
+) {
+  const tags = []
+
+  if (
+    gradeRangeOverlaps(
+      startGrade,
+      endGrade,
+      andAbove,
+      1,
+      4
+    )
+  ) {
+    tags.push('primary')
+  }
+
+  if (
+    gradeRangeOverlaps(
+      startGrade,
+      endGrade,
+      andAbove,
+      5,
+      7
+    )
+  ) {
+    tags.push('lower-secondary')
+  }
+
+  if (
+    skills.length > 1 ||
+    String(category ?? '')
+      .toLowerCase()
+      .includes('mixed')
+  ) {
+    tags.push('mixed-skills')
+  }
+
+  return tags.join(' ')
+}
+
+function updateGradeRangeControls() {
+  const andAbove = gradeAndAboveInput.checked
+
+  endGradeInput.disabled = andAbove
+
+  if (andAbove) {
+    endGradeInput.value = ''
+  }
+}
+
+function parseSavedGradeLevel(value) {
+  const text = String(value ?? '').trim()
+  const numbers = text.match(/\d+/g)?.map(Number) || []
+  const andAbove = /and\s+above|\+/i.test(text)
+
+  return {
+    startGrade: numbers[0] || '',
+    endGrade: andAbove ? '' : numbers[1] || '',
+    andAbove,
+  }
+}
+
+function parseSavedMetaText(metaText, gradeLevel) {
+  const parts = String(metaText ?? '')
+    .split('·')
+    .map((item) => item.trim())
+    .filter(Boolean)
+
+  if (
+    parts.length > 0 &&
+    parts[0].toLowerCase() ===
+      String(gradeLevel ?? '').trim().toLowerCase()
+  ) {
+    parts.shift()
+  }
+
+  let level = ''
+
+  if (
+    parts.length > 0 &&
+    /^[ABC][12](?:\s*[-–]\s*[ABC][12])?$/i.test(parts[0])
+  ) {
+    level = parts.shift()
+  }
+
+  if (!level) {
+    const savedLevelMatch = String(gradeLevel ?? '').match(
+      /\(([ABC][12](?:\s*[-–]\s*[ABC][12])?)\)/i
+    )
+
+    if (savedLevelMatch) {
+      level = savedLevelMatch[1]
+        .replace(/[–—]/g, '-')
+        .replace(/\s+/g, '')
+    }
+  }
+
+  return {
+    level,
+    skills: parts,
+  }
+}
+
+async function getNextDisplayOrder() {
+  const { data, error } = await supabase
+    .from('resources')
+    .select('display_order')
+    .not('display_order', 'is', null)
+    .order('display_order', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+
+  if (error) {
+    throw new Error(
+      `Could not determine display order: ${error.message}`
+    )
+  }
+
+  return Number.isInteger(data?.display_order)
+    ? data.display_order + 1
+    : 1
+}
+
+gradeAndAboveInput.addEventListener(
+  'change',
+  updateGradeRangeControls
+)
+
+updateGradeRangeControls()
 
 const ACCEPT_BY_TYPE = {
   image: 'image/*',
@@ -93,7 +378,21 @@ const IMAGE_EXTENSIONS = new Set([
 ])
 
 let editingResourceId = null
+let editingExistingDisplayOrder = null
 let editingExistingMediaItems = []
+let editingExistingCoverImageUrl = ''
+
+coverImageFileInput.addEventListener('change', () => {
+  if (coverImageFileInput.files?.length) {
+    imageUrlInput.value = ''
+  }
+})
+
+imageUrlInput.addEventListener('input', () => {
+  if (imageUrlInput.value.trim()) {
+    coverImageFileInput.value = ''
+  }
+})
 
 function getExtension(fileName) {
   const parts = fileName.toLowerCase().split('.')
@@ -246,9 +545,14 @@ if (!user) {
   resourceForm.addEventListener('submit', async (event) => {
     event.preventDefault()
 
-    adminMessage.textContent = editingResourceId
-      ? 'Saving changes...'
-      : 'Adding resource...'
+    adminMessage.textContent = ''
+
+    setAdminProgress(
+      8,
+      editingResourceId
+        ? 'Preparing resource changes...'
+        : 'Preparing new resource...'
+    )
 
     submitButton.disabled = true
 
@@ -261,6 +565,21 @@ if (!user) {
       const externalMediaUrl = mediaUrlInput.value.trim()
       const mainResourceUrl =
         document.querySelector('#resource-url').value.trim()
+      const coverImageFile = coverImageFileInput.files?.[0] || null
+      const coverImageUrl = imageUrlInput.value.trim()
+
+      if (coverImageFile && coverImageUrl) {
+        throw new Error(
+          'Choose either a cover image URL or a cover image file, not both.'
+        )
+      }
+
+      if (
+        coverImageFile &&
+        detectMediaType(coverImageFile) !== 'image'
+      ) {
+        throw new Error('The selected cover file must be an image.')
+      }
 
       if (mediaType && !mediaSource) {
         throw new Error('Please choose a file source.')
@@ -300,18 +619,161 @@ if (!user) {
         throw new Error('Please choose one or more files, or a whole folder.')
       }
 
+      let resolvedCoverImageUrl = coverImageUrl || null
+      let uploadedCoverStoragePath = null
+
+      if (coverImageFile) {
+        setAdminProgress(
+          25,
+          `Uploading cover image: ${coverImageFile.name}`
+        )
+
+        const coverBatchId = `cover-${crypto.randomUUID()}`
+        uploadedCoverStoragePath = buildStoragePath(
+          user.id,
+          coverBatchId,
+          coverImageFile
+        )
+
+        const { error: coverUploadError } = await supabase.storage
+          .from('resource-media')
+          .upload(uploadedCoverStoragePath, coverImageFile, {
+            cacheControl: '3600',
+            upsert: false,
+            contentType: coverImageFile.type || undefined
+          })
+
+        if (coverUploadError) {
+          throw new Error(
+            `Could not upload cover image: ${coverUploadError.message}`
+          )
+        }
+
+        setAdminProgress(
+          55,
+          'Cover image uploaded. Preparing resource record...'
+        )
+
+        const { data: coverPublicUrlData } = supabase.storage
+          .from('resource-media')
+          .getPublicUrl(uploadedCoverStoragePath)
+
+        resolvedCoverImageUrl = coverPublicUrlData.publicUrl
+      }
+
+      const startGrade = Number.parseInt(
+        startGradeInput.value,
+        10
+      )
+
+      const endGrade =
+        endGradeInput.value === ''
+          ? null
+          : Number.parseInt(endGradeInput.value, 10)
+
+      const gradeAndAbove = gradeAndAboveInput.checked
+
+      if (
+        !Number.isInteger(startGrade) ||
+        startGrade < 1 ||
+        startGrade > 12
+      ) {
+        throw new Error(
+          'Start Grade must be a number from 1 to 12.'
+        )
+      }
+
+      if (
+        endGrade !== null &&
+        (
+          !Number.isInteger(endGrade) ||
+          endGrade < 1 ||
+          endGrade > 12
+        )
+      ) {
+        throw new Error(
+          'End Grade must be a number from 1 to 12.'
+        )
+      }
+
+      if (
+        endGrade !== null &&
+        endGrade < startGrade
+      ) {
+        throw new Error(
+          'End Grade cannot be lower than Start Grade.'
+        )
+      }
+
+      const generatedGradeLevel = formatGradeLabel(
+        startGrade,
+        endGrade,
+        gradeAndAbove
+      )
+
+      const resourceLevel =
+        resourceLevelInput.value.trim()
+
+      syncSkillsTopicsInput()
+
+      const skillsAndTopics = parseSkillsAndTopics(
+        skillsTopicsInput.value
+      )
+
+      if (skillsAndTopics.length === 0) {
+        throw new Error(
+          'Enter at least one skill or topic.'
+        )
+      }
+
+      const categoryValue =
+        document.querySelector('#category').value.trim()
+
+      const generatedMetaText = [
+        generatedGradeLevel,
+        resourceLevel,
+        ...skillsAndTopics,
+      ]
+        .filter(Boolean)
+        .join(' · ')
+
+      const generatedFilterGroup =
+        buildAutomaticFilterGroup(
+          startGrade,
+          endGrade,
+          gradeAndAbove,
+          skillsAndTopics,
+          categoryValue
+        )
+
+      const resolvedDisplayOrder =
+        editingResourceId &&
+        editingExistingDisplayOrder !== null
+          ? editingExistingDisplayOrder
+          : await getNextDisplayOrder()
+
       const newResource = {
         title: document.querySelector('#title').value.trim(),
         platform: document.querySelector('#platform').value.trim(),
         description: document.querySelector('#description').value.trim(),
-        category: document.querySelector('#category').value.trim(),
+        category: categoryValue,
         demonstration_type: demonstrationType || null,
         resource_url: mainResourceUrl || null,
-        image_url:
-          document.querySelector('#image-url').value.trim() || null,
-        grade_level: document.querySelector('#grade-level').value.trim(),
+        image_url: resolvedCoverImageUrl,
+        grade_level: generatedGradeLevel,
+        meta_text: generatedMetaText,
+        details_page: detailsPageInput.value.trim() || null,
+        filter_group: generatedFilterGroup || null,
+        display_order: resolvedDisplayOrder,
         created_by: user.id,
       }
+
+      setAdminProgress(
+        65,
+        editingResourceId
+          ? 'Saving resource changes...'
+          : 'Saving resource...'
+      )
 
       let saveResult
 
@@ -333,7 +795,39 @@ if (!user) {
       const { data: savedResource, error: saveError } = saveResult
 
       if (saveError) {
+        if (uploadedCoverStoragePath) {
+          await supabase.storage
+            .from('resource-media')
+            .remove([uploadedCoverStoragePath])
+        }
+
         throw new Error(`Could not save resource: ${saveError.message}`)
+      }
+
+      setAdminProgress(
+        82,
+        'Resource saved. Finishing remaining steps...'
+      )
+
+      const previousCoverStoragePath = getStoragePath({
+        media_url: editingExistingCoverImageUrl
+      })
+
+      if (
+        previousCoverStoragePath &&
+        previousCoverStoragePath !== uploadedCoverStoragePath &&
+        editingExistingCoverImageUrl !== resolvedCoverImageUrl
+      ) {
+        const { error: oldCoverDeleteError } = await supabase.storage
+          .from('resource-media')
+          .remove([previousCoverStoragePath])
+
+        if (oldCoverDeleteError) {
+          console.warn(
+            'The previous cover image could not be removed:',
+            oldCoverDeleteError.message
+          )
+        }
       }
 
       const pendingMediaItems = []
@@ -395,8 +889,16 @@ if (!user) {
         for (let index = 0; index < mediaFiles.length; index += 1) {
           const mediaFile = mediaFiles[index]
 
-          adminMessage.textContent =
+          const mediaProgress =
+            82 +
+            Math.round(
+              ((index + 1) / mediaFiles.length) * 12
+            )
+
+          setAdminProgress(
+            mediaProgress,
             `Uploading ${index + 1} of ${mediaFiles.length}: ${mediaFile.name}`
+          )
 
           const storedFileName = buildStoragePath(
             user.id,
@@ -455,15 +957,27 @@ if (!user) {
         ? 'Resource updated successfully!'
         : 'Resource added successfully!'
 
+      finishAdminProgress(
+        wasEditing
+          ? 'Resource update completed.'
+          : 'Resource upload and save completed.'
+      )
+
       editingResourceId = null
+      editingExistingDisplayOrder = null
+      editingExistingCoverImageUrl = ''
       editingExistingMediaItems = []
       submitButton.textContent = 'Add Resource'
 
       resourceForm.reset()
+      editingExistingDisplayOrder = null
       mediaRoleSelect.value = 'main'
+      syncSkillsTopicsInput()
+      updateGradeRangeControls()
       updateAdditionalMediaFields()
       await loadResources()
     } catch (error) {
+    resetAdminProgress()
       adminMessage.textContent = error.message
     } finally {
       submitButton.disabled = false
@@ -791,10 +1305,42 @@ function createFolderMediaGroup(mediaItems, onDeleteFile) {
         document.querySelector('#category').value = resource.category || ''
         document.querySelector('#resource-url').value =
           resource.resource_url || ''
-        document.querySelector('#image-url').value = resource.image_url || ''
-        document.querySelector('#grade-level').value =
-          resource.grade_level || ''
-        demonstrationTypeSelect.value = resource.demonstration_type || ''
+        editingExistingCoverImageUrl = resource.image_url || ''
+        imageUrlInput.value = editingExistingCoverImageUrl
+        coverImageFileInput.value = ''
+        const savedGrade = parseSavedGradeLevel(
+          resource.grade_level
+        )
+
+        startGradeInput.value = savedGrade.startGrade
+        endGradeInput.value = savedGrade.endGrade
+        gradeAndAboveInput.checked = savedGrade.andAbove
+        updateGradeRangeControls()
+
+        const savedMeta = parseSavedMetaText(
+          resource.meta_text,
+          resource.grade_level
+        )
+
+        resourceLevelInput.value = savedMeta.level
+
+        const skillsForEdit =
+          savedMeta.skills.length > 0
+            ? savedMeta.skills
+            : resource.category
+              ? [resource.category]
+              : []
+
+        populateSkillControls(skillsForEdit)
+
+        detailsPageInput.value =
+          resource.details_page || ''
+
+        editingExistingDisplayOrder =
+          resource.display_order ?? null
+
+        demonstrationTypeSelect.value =
+          resource.demonstration_type || ''
 
         const firstMediaItem = editingExistingMediaItems[0]
 
@@ -844,9 +1390,14 @@ function createFolderMediaGroup(mediaItems, onDeleteFile) {
           return
         }
 
-        const storagePaths = (resource.resource_media || [])
-          .map(getStoragePath)
-          .filter(Boolean)
+        const coverStoragePath = getStoragePath({
+          media_url: resource.image_url
+        })
+
+        const storagePaths = [
+          ...(resource.resource_media || []).map(getStoragePath),
+          coverStoragePath
+        ].filter(Boolean)
 
         if (storagePaths.length > 0) {
           adminMessage.textContent =

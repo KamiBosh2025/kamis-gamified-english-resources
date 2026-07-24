@@ -2,7 +2,20 @@ import { supabase } from './supabase.js'
 
 const loginForm = document.querySelector('#login-form')
 const loginMessage = document.querySelector('#login-message')
+const passwordInput = document.querySelector('#password')
+const togglePassword = document.querySelector('#toggle-password')
 
+togglePassword.addEventListener('click', () => {
+  const passwordIsHidden = passwordInput.type === 'password'
+
+  passwordInput.type = passwordIsHidden ? 'text' : 'password'
+  togglePassword.textContent = passwordIsHidden ? '\u{1F648}' : '\u{1F441}\uFE0F'
+  togglePassword.classList.toggle('password-hidden', !passwordIsHidden)
+  togglePassword.setAttribute(
+    'aria-label',
+    passwordIsHidden ? 'Hide password' : 'Show password'
+  )
+})
 loginForm.addEventListener('submit', async (event) => {
   event.preventDefault()
 
