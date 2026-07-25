@@ -1672,3 +1672,7 @@ button {
   text-align: center;
 }
 /* END RESOURCE DESCRIPTION CENTER */
+
+.big-bad-wolf-page .resource-details-image-wrap {
+  align-self: center;
+}
