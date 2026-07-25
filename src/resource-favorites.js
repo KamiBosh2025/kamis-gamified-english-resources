@@ -1,8 +1,11 @@
-﻿import { supabase } from './supabase.js'
+import { supabase } from './supabase.js'
 
 const cleanText = (value) => String(value ?? '').trim()
 
 function getResourceId(card) {
+  const savedId = cleanText(card.dataset.resourceId)
+  if (savedId) return savedId
+
   const detailsLink = [...card.querySelectorAll('a')].find((link) => {
     return link.href.includes('resource-details.html?id=')
   })
@@ -13,15 +16,15 @@ function getResourceId(card) {
   return cleanText(url.searchParams.get('id'))
 }
 
-function createFavoriteButton(resourceId, favoriteMap, userId) {
+function createFavouriteButton(resourceId, favouriteMap, userId) {
   const button = document.createElement('button')
   button.type = 'button'
   button.className = 'resource-button resource-button-secondary'
 
   const updateButton = () => {
-    button.textContent = favoriteMap.has(resourceId)
-      ? 'Remove from Favourites'
-      : 'Add to Favourites'
+    button.textContent = favouriteMap.has(resourceId)
+      ? 'Remove from My Favourites'
+      : 'Add to My Favourites'
   }
 
   updateButton()
@@ -29,33 +32,23 @@ function createFavoriteButton(resourceId, favoriteMap, userId) {
   button.addEventListener('click', async () => {
     button.disabled = true
 
-    if (favoriteMap.has(resourceId)) {
-      const favoriteId = favoriteMap.get(resourceId)
-
+    if (favouriteMap.has(resourceId)) {
+      const favouriteId = favouriteMap.get(resourceId)
       const { error } = await supabase
         .from('favorites')
         .delete()
-        .eq('id', favoriteId)
+        .eq('id', favouriteId)
         .eq('user_id', userId)
 
-      if (!error) {
-        favoriteMap.delete(resourceId)
-      }
+      if (!error) favouriteMap.delete(resourceId)
     } else {
       const { data, error } = await supabase
         .from('favorites')
-        .insert({
-          user_id: userId,
-          resource_id: resourceId,
-        })
+        .insert({ user_id: userId, resource_id: resourceId })
         .select('id')
         .single()
 
-      if (!error && data?.id) {
-        favoriteMap.set(resourceId, data.id)
-        window.location.href = '/favourites.html'
-        return
-      }
+      if (!error && data?.id) favouriteMap.set(resourceId, data.id)
     }
 
     updateButton()
@@ -65,27 +58,27 @@ function createFavoriteButton(resourceId, favoriteMap, userId) {
   return button
 }
 
-async function activateFavoriteButtons() {
+async function activateFavouriteButtons() {
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
   if (!user) return
 
-  const { data: favorites, error } = await supabase
+  const { data: favourites, error } = await supabase
     .from('favorites')
     .select('id, resource_id')
     .eq('user_id', user.id)
 
   if (error) {
-    console.error('Favorites could not be loaded:', error)
+    console.error('Favourites could not be loaded:', error)
     return
   }
 
-  const favoriteMap = new Map(
-    (favorites || []).map((favorite) => [
-      String(favorite.resource_id),
-      favorite.id,
+  const favouriteMap = new Map(
+    (favourites || []).map((favourite) => [
+      String(favourite.resource_id),
+      favourite.id,
     ])
   )
 
@@ -100,7 +93,7 @@ async function activateFavoriteButtons() {
       if (!actions) return
 
       actions.appendChild(
-        createFavoriteButton(resourceId, favoriteMap, user.id)
+        createFavouriteButton(resourceId, favouriteMap, user.id)
       )
 
       card.dataset.favoriteReady = 'true'
@@ -110,12 +103,14 @@ async function activateFavoriteButtons() {
   prepareCards()
 
   const observer = new MutationObserver(prepareCards)
-
   observer.observe(document.body, {
     childList: true,
     subtree: true,
+    attributes: true,
+    attributeFilter: ['data-resource-id'],
   })
+
+  window.addEventListener('resources:ready', prepareCards)
 }
 
-activateFavoriteButtons()
-
+activateFavouriteButtons()

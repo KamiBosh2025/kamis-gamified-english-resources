@@ -199,3 +199,16 @@ The repository includes `netlify.toml`. In Netlify:
 ## License and educational content
 
 The website and original descriptions are © 2026 Kameliya Boshlova. Kahoot, Wordwall, Google Drive and YouTube content remains subject to the respective platform and creator terms.
+
+## Planned future development
+
+The current submission is intentionally limited to a stable curated catalogue. The planned maintenance and expansion path includes:
+
+- regular addition of new administrator-approved resources;
+- a registered-user request form for suggesting a Kahoot, Wordwall or other public resource for inclusion in the website catalogue;
+- Courses or Learning Paths that arrange several resources in a pedagogical sequence;
+- Continue Learning / Resume Progress for registered users, including the last opened resource, In Progress / Completed status, and exact playback position for audio or video hosted by this website;
+- direct return to the originating catalogue card after viewing resource details;
+- larger catalogues supported by Previous and Next pagination.
+
+For external Kahoot and Wordwall activities, the website can remember which resource a registered user opened, but it cannot reliably store the exact question reached inside the external platform.

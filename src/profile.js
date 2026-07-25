@@ -23,7 +23,7 @@ if (!user) {
   const { data: profile } = await supabase
     .from('profiles')
     .select('*')
-    .eq('user_id', user.id)
+    .eq('id', user.id)
     .maybeSingle()
 
   const profileName = profile?.full_name || profile?.name || profile?.display_name
@@ -68,7 +68,7 @@ if (!user) {
       await supabase
         .from('profiles')
         .update({ full_name: fullName })
-        .eq('user_id', user.id)
+        .eq('id', user.id)
     }
 
     nameElement.textContent = fullName

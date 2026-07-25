@@ -27,11 +27,11 @@
         <h2>English Learning Resources</h2>
         <p>Browse selected Kahoot and Wordwall activities.</p>
 <div class="resource-actions">
-  <a href="/teaching-demonstration.html" class="resource-button">
+  <a id="my-teaching-demonstrations" href="/teaching-demonstration.html" class="resource-button">
     My Teaching Demonstrations
   </a>
 
-  <a href="/external-teaching-examples.html" class="resource-button">
+  <a id="external-teaching-examples" href="/external-teaching-examples.html" class="resource-button">
     External Teaching Examples
   </a>
 </div>
@@ -45,7 +45,7 @@
 </div>
 
         <div class="resource-grid">
-          <article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="primary">
+          <article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="primary" id="resource-big-bad-wolf" data-resource-anchor="resource-big-bad-wolf">
             <div class="resource-card-image-wrap">
               <img
                 src="/src/assets/big-bad-wolf-cover.png"
@@ -78,7 +78,7 @@
               </div>
             </div>
           </article>
-        <article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="mixed-skills">
+        <article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="mixed-skills" id="resource-english-bulgarian-basics" data-resource-anchor="resource-english-bulgarian-basics">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/motornica-na-znanieto.png"
@@ -113,7 +113,7 @@
     </div>
   </div>
 </article>
-<article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="mixed-skills">
+<article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="mixed-skills" id="resource-playful-english-bulgarian-quiz" data-resource-anchor="resource-playful-english-bulgarian-quiz">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/playful-English-Bulgarian-Quiz.png"
@@ -148,7 +148,7 @@
     </div>
   </div>
 </article>
-<article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="lower-secondary">
+<article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="lower-secondary" id="resource-everyday-directions-city-places-vocabulary" data-resource-anchor="resource-everyday-directions-city-places-vocabulary">
 
   <div class="resource-card-image-wrap">
     <img
@@ -183,7 +183,7 @@ alt="Everyday Directions and City Places Vocabulary"
     </div>
   </div>
 </article>
-<article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="mixed-skills">
+<article class="resource-card resource-card-horizontal" data-platform="kahoot" data-category="mixed-skills" id="resource-bulgarias-100-tourist-sites-challenge" data-resource-anchor="resource-bulgarias-100-tourist-sites-challenge">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/bulgarias-100-tourist-sites-challenge.webp"
@@ -217,7 +217,7 @@ alt="Bulgaria’s 100 Tourist Sites Challenge"
     </div>
   </div>
 </article>
- <article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="lower-secondary">
+ <article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="lower-secondary" id="resource-bulgarian-english-fun-word-mix" data-resource-anchor="resource-bulgarian-english-fun-word-mix">
 
   <div class="resource-card-image-wrap">
     <img
@@ -253,7 +253,7 @@ alt="Bulgarian–English Fun Word Mix"
   </div>
 </article>
 
-<article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="primary">
+<article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="primary" id="resource-have-fun-kids" data-resource-anchor="resource-have-fun-kids">
 
   <div class="resource-card-image-wrap">
     <img
@@ -288,7 +288,7 @@ alt="Have fun, kids!"
     </div>
   </div>
 </article> 
- <article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="lower-secondary">
+ <article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="lower-secondary" id="resource-amazing-planet-earth" data-resource-anchor="resource-amazing-planet-earth">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/amazing-planet-earth.png"
@@ -330,7 +330,7 @@ alt="Have fun, kids!"
     </div>
   </div>
 </article> 
-<article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="mixed-skills">
+<article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="mixed-skills" id="resource-crazy-insects" data-resource-anchor="resource-crazy-insects">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/crazy-insects.png"
@@ -371,7 +371,7 @@ alt="Crazy Insects"
     </div>
   </div>
 </article>
-<article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="mixed-skills">
+<article class="resource-card resource-card-horizontal" data-platform="wordwall" data-category="mixed-skills" id="resource-click-only-present-simple-tense" data-resource-anchor="resource-click-only-present-simple-tense">
   <div class="resource-card-image-wrap">
     <img
       src="/src/assets/click-only-present-simple-tense.png"
@@ -412,6 +412,7 @@ alt="Crazy Insects"
       
     </main>
     <script type="module" src="/src/resources.js"></script>
+    <script type="module" src="/src/resource-favorites.js"></script>
     <script type="module" src="/src/auth-nav.js"></script>
 </body>
 </html>

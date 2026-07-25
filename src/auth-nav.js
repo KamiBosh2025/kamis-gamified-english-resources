@@ -1,4 +1,4 @@
-﻿import { supabase } from './supabase.js'
+import { supabase } from './supabase.js'
 
 function createNavLink(label, href, className = '') {
   const link = document.createElement('a')
